@@ -13,17 +13,11 @@ namespace TaskTracker2.Controllers
             return tasks;
         }
 
-        [HttpGet ("add")]
-        public List<string> Add(string task)
+        [HttpPost ("add")]
+        public List<string> AddTask(string task)
         {
             tasks.Add(task);
             return tasks;
-        }
-
-        [HttpPost]
-        public void AddTask(string task)
-        {
-            tasks.Add(task);
         }
     }
 }

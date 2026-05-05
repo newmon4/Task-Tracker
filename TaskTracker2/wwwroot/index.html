@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Task Tracker</title>
+</head>
+<body>
+    <h1>Task Tracker</h1>
+    <h3>Toggle the checkbox to enable a personal URL</h3>
+
+    <label>
+        <input type="checkbox" id="toggleEdit" onchange="toggleFields()" title="Allow to change URL">
+    </label>
+
+    <p></p>
+
+    <input id="ControllerURL" placeholder="https://localhost:xxxx" disabled/>
+    <button id="urlChangeButton" onclick="chooseTheURL()" disabled>Add</button>
+    <p></p>
+    <input id="taskInput" placeholder="Enter Your Task" />
+    <button onclick="addTask()">Add</button>
+
+    <ul id="taskList"></ul>
+
+
+    <script>
+
+        function toggleFields() {
+            const enabled = document.getElementById("toggleEdit").checked;
+
+            document.getElementById("ControllerURL").disabled = !enabled;
+            document.getElementById("urlChangeButton").disabled = !enabled;
+        }
+
+        let url = "";
+
+        function chooseTheURL() {
+            url = document.getElementById("ControllerURL").value;
+            loadTasks();
+        }
+
+        function getUrl() {
+            return url || "";
+        }
+
+        async function loadTasks() {
+            const res = await fetch(url);
+            const data = await res.json();
+
+            const list = document.getElementById("taskList");
+            list.innerHTML = ""
+            data.forEach(task => {
+                const li = document.createElement("li");
+                li.textContent = task;
+                list.appendChild(li);
+            })
+        }
+
+        async function addTask() {
+            const value = document.getElementById("taskInput").value;
+            await fetch(url + "/tasks" + `/add?task=${value}`, { method: "POST" });
+            loadTasks();
+        }
+
+        loadTasks();
+    </script>
+</body>
+</html>
