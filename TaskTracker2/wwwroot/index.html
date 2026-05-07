@@ -52,16 +52,27 @@
             list.innerHTML = ""
             data.forEach(task => {
                 const li = document.createElement("li");
-                li.textContent = task;
+                li.textContent = task.name;
                 list.appendChild(li);
             })
         }
 
         async function addTask() {
             const value = document.getElementById("taskInput").value;
-            await fetch(url + `/add?task=${value}`, { method: "POST" });
+            const task = {
+                name: value
+            }
+            await fetch(url + `/add`, {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(task) 
+        });
+
+            
             loadTasks();
-        }
+   }
 
         loadTasks();
     </script>
