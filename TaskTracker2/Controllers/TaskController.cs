@@ -4,9 +4,10 @@ namespace TaskTracker2.Controllers
 {
     [ApiController]
     [Route("tasks")]
-    public class TaskController : ControllerBase
+    public class TaskController : ControllerBase { 
 
-    {   private static List<string> tasks = new List<string>();
+         
+        private static List<string> tasks = new List<string>();
         [HttpGet]
         public List<string> GetTasks()
         {
@@ -14,10 +15,11 @@ namespace TaskTracker2.Controllers
         }
 
         [HttpPost ("add")]
-        public List<string> AddTask(string task)
+        public string AddTask(string task)
         {
             tasks.Add(task);
-            return tasks;
+            return task;
         }
     }
 }
+    

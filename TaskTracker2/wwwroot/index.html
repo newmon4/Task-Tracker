@@ -18,10 +18,12 @@
     <p></p>
     <input id="taskInput" placeholder="Enter Your Task" />
     <button onclick="addTask()">Add</button>
+    <p></p>
+    <!--<a href="/tasks">View all tasks</a>-->
 
     <ul id="taskList"></ul>
 
-
+    
     <script>
 
         function toggleFields() {
@@ -31,7 +33,7 @@
             document.getElementById("urlChangeButton").disabled = !enabled;
         }
 
-        let url = "";
+        let url = "/tasks";
 
         function chooseTheURL() {
             url = document.getElementById("ControllerURL").value;
@@ -57,7 +59,7 @@
 
         async function addTask() {
             const value = document.getElementById("taskInput").value;
-            await fetch(url + "/tasks" + `/add?task=${value}`, { method: "POST" });
+            await fetch(url + `/add?task=${value}`, { method: "POST" });
             loadTasks();
         }
 
