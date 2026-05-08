@@ -54,6 +54,10 @@
                 const li = document.createElement("li");
                 li.textContent = task.name;
                 list.appendChild(li);
+                const deleteButton = document.createElement("button");
+                deleteButton.textContent = "Delete Task";
+                deleteButton.onclick = () => deleteTask(task.id);
+                li.appendChild(deleteButton);
             })
         }
 
@@ -67,12 +71,23 @@
                 headers: {
                     "Content-Type": "application/json"
                 },
-                body: JSON.stringify(task) 
-        });
+                body: JSON.stringify(task)
+            });
 
             
             loadTasks();
-   }
+        }
+
+        async function deleteTask(id) {
+            await fetch(url + `/delete/${id}`, {
+                method: "DELETE"
+            });
+                //headers: {
+                   // "Content-Type": "application/json"
+              //  },
+               // body: JSON.stringify(task)
+            loadTasks();
+            }
 
         loadTasks();
     </script>

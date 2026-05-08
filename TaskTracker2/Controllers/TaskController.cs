@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Http.HttpResults;
+using Microsoft.AspNetCore.Mvc;
 
 namespace TaskTracker2.Controllers
 {
@@ -16,20 +17,32 @@ namespace TaskTracker2.Controllers
         private static int nextId = 1;
 
         private static List<TaskItem> tasks = new List<TaskItem>();
-        
+
         [HttpGet]
         public List<TaskItem> GetTasks()
         {
             return tasks;
         }
 
-        [HttpPost ("add")]
+        [HttpPost("add")]
         public TaskItem AddTask(TaskItem task)
         {
 
             task.Id = nextId++;
             tasks.Add(task);
             return task;
+        }
+
+        [HttpDelete("delete/{id}")]
+        public IActionResult DeleteTask(int id)
+        {
+            var task = tasks.FirstOrDefault(t => t.Id == id);
+            if (task != null)
+            {
+                tasks.Remove(task);
+                return Ok();
+            }
+            else return NotFound();
         }
     }
 }
