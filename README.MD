@@ -13,3 +13,13 @@
 - **Backend:** C# ASP.NET Core
 - **Frontend:** vanilla HTML, Javascipt
 - **Languages:** C#, Javascript
+
+## Requirements
+- Visual Studio (2026)
+- ASP.NET and web development workload, .NET DSK
+
+## How To Run
+- 1. Download as ZIP or clone repository
+- 2. open TaskTracker.slnx
+- 3. Run Project (https)
+- The page opens automatically. If not, open the URL shown in the console
