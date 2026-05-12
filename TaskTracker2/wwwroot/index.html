@@ -58,6 +58,11 @@
                 deleteButton.textContent = "Delete Task";
                 deleteButton.onclick = () => deleteTask(task.id);
                 li.appendChild(deleteButton);
+                const editeButton = document.createElement("button");
+                editeButton.textContent = "Edite Task";
+                editeButton.onclick = () => editTask(task.id, task.name);
+                li.appendChild(editeButton);
+
             })
         }
 
@@ -87,7 +92,12 @@
               //  },
                // body: JSON.stringify(task)
             loadTasks();
-            }
+        }
+
+        async function editTask(id, name) {
+            const newName = prompt("Edite Task", name);
+            
+        }
 
         loadTasks();
     </script>
