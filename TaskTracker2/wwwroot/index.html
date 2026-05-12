@@ -60,7 +60,7 @@
                 li.appendChild(deleteButton);
                 const editeButton = document.createElement("button");
                 editeButton.textContent = "Edite Task";
-                editeButton.onclick = () => editTask(task.id, task.name);
+                editeButton.onclick = () => UIeditTask(task.id, task.name);
                 li.appendChild(editeButton);
 
             })
@@ -94,9 +94,26 @@
             loadTasks();
         }
 
-        async function editTask(id, name) {
+        async function UIeditTask(id, name) {
             const newName = prompt("Edite Task", name);
+            editTask(id, newName)
             
+        }
+
+        async function editTask(id, newName) {
+            const task = {
+                name: newName
+            };
+            console.log(id, newName)
+            await fetch(url + `/edit/${id}`, {
+                method: "PUT",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(task)
+            });
+
+            loadTasks();
         }
 
         loadTasks();

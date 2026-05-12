@@ -44,6 +44,18 @@ namespace TaskTracker2.Controllers
             }
             else return NotFound();
         }
+
+        [HttpPut("edit/{id}")]
+        public IActionResult EditTask(int id, TaskItem taskData)
+        {
+            var task = tasks.Find(t => t.Id == id);
+            if (task != null)
+            {
+                task.Name = taskData.Name;
+                return Ok();
+            }
+            else return BadRequest();
+        }
     }
 }
     
