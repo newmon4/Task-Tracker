@@ -5,6 +5,7 @@
 
 ## Key Features
 - **Create Task**
+- **Edit Task**
 - **Delete Task**
 - **Dynamic task list rendering**
 - **Experimental custom API endpoint selection**
@@ -16,7 +17,7 @@
 
 ## Requirements
 - Visual Studio (2026)
--ASP.NET and web development workload, .NET DSK
+- ASP.NET and web development workload, .NET DSK
 
 ## How To Run
 1. Download as ZIP or clone repository
