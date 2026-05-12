@@ -71,7 +71,7 @@
             const task = {
                 name: value
             }
-            await fetch(url + `/add`, {
+            await fetch(url, {
                 method: "POST",
                 headers: {
                     "Content-Type": "application/json"
@@ -84,7 +84,7 @@
         }
 
         async function deleteTask(id) {
-            await fetch(url + `/delete/${id}`, {
+            await fetch(url + `/${id}`, {
                 method: "DELETE"
             });
                 //headers: {
@@ -105,7 +105,7 @@
                 name: newName
             };
             console.log(id, newName)
-            await fetch(url + `/edit/${id}`, {
+            await fetch(url + `/${id}`, {
                 method: "PUT",
                 headers: {
                     "Content-Type": "application/json"

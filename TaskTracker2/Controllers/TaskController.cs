@@ -24,7 +24,7 @@ namespace TaskTracker2.Controllers
             return tasks;
         }
 
-        [HttpPost("add")]
+        [HttpPost()]
         public TaskItem AddTask(TaskItem task)
         {
 
@@ -33,7 +33,7 @@ namespace TaskTracker2.Controllers
             return task;
         }
 
-        [HttpDelete("delete/{id}")]
+        [HttpDelete("{id}")]
         public IActionResult DeleteTask(int id)
         {
             var task = tasks.FirstOrDefault(t => t.Id == id);
@@ -45,7 +45,7 @@ namespace TaskTracker2.Controllers
             else return NotFound();
         }
 
-        [HttpPut("edit/{id}")]
+        [HttpPut("{id}")]
         public IActionResult EditTask(int id, TaskItem taskData)
         {
             var task = tasks.Find(t => t.Id == id);
