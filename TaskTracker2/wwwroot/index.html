@@ -6,24 +6,28 @@
     <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-    <h1>Task Tracker</h1>
-    <h3>Toggle the checkbox to enable a personal URL(endpoint)</h3>
+    <div class="input-section">
+        <h1>Task Tracker</h1>
+        <h3>Toggle the checkbox to enable a personal URL(endpoint)</h3>
 
-    <label>
-        <input type="checkbox" id="toggleEdit" onchange="toggleFields()" title="Allow to change URL">
-    </label>
+        <label>
+            <input type="checkbox" id="toggleEdit" onchange="toggleFields()" title="Allow to change URL">
+        </label>
 
-    <p></p>
+        <p></p>
 
-    <input id="ControllerURL" placeholder="https://localhost:xxxx" disabled/>
-    <button id="urlChangeButton" onclick="chooseTheURL()" disabled>Add</button>
-    <p></p>
-    <input id="taskInput" placeholder="Enter Your Task" />
-    <button onclick="addTask()">Add</button>
-    <p></p>
-    <!--<a href="/tasks">View all tasks</a>-->
+        <input id="ControllerURL" placeholder="https://localhost:xxxx" disabled />
+        <button id="urlChangeButton" onclick="chooseTheURL()" disabled>Add</button>
+        <p></p>
+        <input id="taskInput" placeholder="Enter Your Task" />
+        <button onclick="addTask()">Add</button>
+        <p></p>
+        <!--<a href="/tasks">View all tasks</a>-->
+    </div>
 
-    <ul id="taskList"></ul>
+   <!----<div class="tasks-section">-->
+        <ul id="taskList"></ul>
+    <!-----</div>-->
 
     
     <script>
@@ -55,15 +59,18 @@
             data.forEach(task => {
                 const li = document.createElement("li");
                 li.textContent = task.name;
+                li.className = "task";
                 list.appendChild(li);
                 const deleteButton = document.createElement("button");
                 deleteButton.textContent = "Delete Task";
+                deleteButton.className = "delete-btn";
                 deleteButton.onclick = () => deleteTask(task.id);
                 li.appendChild(deleteButton);
-                const editeButton = document.createElement("button");
-                editeButton.textContent = "Edite Task";
-                editeButton.onclick = () => UIeditTask(task.id, task.name);
-                li.appendChild(editeButton);
+                const editButton = document.createElement("button");
+                editButton.textContent = "Edit Task";
+                editButton.className = "edit-btn";
+                editButton.onclick = () => UIeditTask(task.id, task.name);
+                li.appendChild(editButton);
 
             })
         }
@@ -97,7 +104,7 @@
         }
 
         async function UIeditTask(id, name) {
-            const newName = prompt("Edite Task", name);
+            const newName = prompt("Edit Task", name);
             editTask(id, newName)
             
         }
